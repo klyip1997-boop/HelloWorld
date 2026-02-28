@@ -17,13 +17,10 @@ def main():
     age_predictions = age_classifier(image_name)
     st.write(age_predictions)
     age_predictions = sorted(age_predictions, key=lambda x: x['score'], reverse=True)
-
-    return age_predictions[0]['label']
   
     # Display results
-    predicted_age = imgclassifcation()  
     st.write("Predicted Age Range:")
-    st.write(f"Age range: {predicted_age}")
+    st.write(f"Age range: {age_predictions[0]['label']}")
     st.write("Done")
 
 if __name__ == "__main__":
