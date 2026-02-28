@@ -6,7 +6,7 @@ import streamlit as st
 st.header("Title: Age Classification using ViT")
 
 # Load the age classification pipeline
-def imgclassification():
+def main():
     age_classifier = pipeline("image-classification",
                                model="prithivMLmods/Age-Classification-SigLIP2")
 
@@ -20,9 +20,7 @@ def imgclassification():
 
     return age_predictions[0]['label']
   
-# Display results
-
-def main():
+    # Display results
     predicted_age = imgclassifcation()  
     st.write("Predicted Age Range:")
     st.write(f"Age range: {predicted_age}")
