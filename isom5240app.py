@@ -27,3 +27,6 @@ def main():
     st.write("Predicted Age Range:")
     st.write(f"Age range: {predicted_age}")
     st.write("Done")
+
+if __name__ == "__main__":
+    main()
