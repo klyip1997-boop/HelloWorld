@@ -2,11 +2,11 @@ from transformers import pipeline
 from PIL import Image
 import streamlit as st
 
-def AgeClassifier():
+def AgeClassifier(imgFilename):
     age_classifier = pipeline("image-classification",
                                model="prithivMLmods/Age-Classification-SigLIP2")
 
-    image_name = "middleagedMan.jpg"
+    image_name = imgFilename
     image_name = Image.open(image_name).convert("RGB")
 
     # Classify age
@@ -20,7 +20,7 @@ def main():
     # Streamlit UI
     st.header("Title: Age Classification using ViT")
 
-    age_predictions = AgeClassifier()
+    age_predictions = AgeClassifier("middleageMan.jpg")
     
     st.write(age_predictions)
     age_predictions = sorted(age_predictions, key=lambda x: x['score'], reverse=True)
