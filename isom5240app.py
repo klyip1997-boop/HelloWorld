@@ -6,23 +6,24 @@ import streamlit as st
 st.header("Title: Age Classification using ViT")
 
 # Load the age classification pipeline
-# The code below should be placed in the main part of the program
-# age_classifier = pipeline("image-classification",
-#                          model="nateraw/vit-age-classifier")
+def imgclassification():
+    age_classifier = pipeline("image-classification",
+                               model="prithivMLmods/Age-Classification-SigLIP2")
 
-age_classifier = pipeline("image-classification",
-                         model="prithivMLmods/Age-Classification-SigLIP2")
+    image_name = "middleagedMan.jpg"
+    image_name = Image.open(image_name).convert("RGB")
 
-image_name = "middleagedMan.jpg"
-image_name = Image.open(image_name).convert("RGB")
+    # Classify age
+    age_predictions = age_classifier(image_name)
+    st.write(age_predictions)
+    age_predictions = sorted(age_predictions, key=lambda x: x['score'], reverse=True)
 
-# Classify age
-age_predictions = age_classifier(image_name)
-st.write(age_predictions)
-age_predictions = sorted(age_predictions, key=lambda x: x['score'], reverse=True)
-
+    return age_predictions[0]['label']
+  
 # Display results
-st.write("Predicted Age Range:")
-st.write(f"Age range: {age_predictions[0]['label']}")
 
-st.write("Done")
+def main():
+    predicted_age = imgclassifcation()  
+    st.write("Predicted Age Range:")
+    st.write(f"Age range: {predicted_age}")
+    st.write("Done")
