@@ -20,7 +20,7 @@ def main():
     # Streamlit UI
     st.header("Title: Age Classification using ViT")
 
-    age_predictions = AgeClassifier("middleageMan.jpg")
+    age_predictions = AgeClassifier("middleagedMan.jpg")
     
     st.write(age_predictions)
     age_predictions = sorted(age_predictions, key=lambda x: x['score'], reverse=True)
